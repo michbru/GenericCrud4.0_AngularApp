@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+@import "~ngx-easy-table/style.scss";
+@import "~bootstrap/dist/css/bootstrap.css";  
+@import './assets/custom.css';
+
+
+@media (min-width: 1500px) {
+    .container{
+        max-width: 1500px;
+    }
+}
+
