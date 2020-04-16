@@ -28,7 +28,7 @@ readonly rootURL = 'https://gencrudcore31apiapp.azurewebsites.net/api';
  getItems(entName: string) {
    const headers = new HttpHeaders().set('Content-Type', 'application/json');
    headers.append("access-control-allow-methods", "POST, PUT, DELETE, GET, OPTIONS");
-   var url = this.rootURL + '/Generic/getItems?entName=' + entName;
+   var url = this.rootURL + '/Generic/GetItems?entName=' + entName;
 
    var ret = this.http.get<any>(url);
 
@@ -82,7 +82,7 @@ deleteItem(ent: string, id: string, fldName:string, data:any) {
   obj.p_recId=id;
   obj.p_primeKey=fldName;
   obj.record = data
-  var url2 = this.rootURL + '/Generic/deleteItem';
+  var url2 = this.rootURL + '/Generic/DeleteItem';
 
   var ret = this.http.post(url2,obj,options);
   return ret;

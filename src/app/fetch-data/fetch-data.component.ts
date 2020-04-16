@@ -9,7 +9,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 export class FetchDataComponent {
   public forecasts: WeatherForecast[];
   //readonly rootURL : string = 'https://localhost:44317/api/';
-  readonly rootURL: string ='https://gencrudcore31apiapp.azurewebsites.net/api'
+  readonly rootURL: string ='https://gencrudcore31apiapp.azurewebsites.net/api/'
 
   constructor(http: HttpClient)  {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
