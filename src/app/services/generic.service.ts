@@ -67,8 +67,41 @@ updateItem(ent: string, id: string, fldName:string, data:any) {
   var url2 = this.rootURL + '/Generic/UpdateItem';
 
   var ret = this.http.post(url2,obj,options);
+
   return ret;
 }
+
+updateItem3(ent: string, id: string, fldName:string, data:any) {
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  var headers2 = new HttpHeaders().set('Content-Type', 'application/json');
+  headers.append("access-control-allow-methods", "POST, PUT, DELETE, GET, OPTIONS");
+  let options = {
+    headers: headers
+}; 
+  var obj = new ApiSendSave();
+
+  obj.p_entity=ent;
+  obj.p_recId=id;
+  obj.p_primeKey=fldName;
+  obj.record = data
+  var url2 = this.rootURL + '/Generic/UpdateItem';
+
+
+this.http.post(url2,obj,options)
+.subscribe(
+data  => {
+console.log("POST Request is successful ", data);
+return data;
+},
+error  => {
+console.log("Error", error);
+return error;
+}
+
+);
+
+}
+
 deleteItem(ent: string, id: string, fldName:string, data:any) {
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
   var headers2 = new HttpHeaders().set('Content-Type', 'application/json');
@@ -99,7 +132,8 @@ updateItem2(ent: string, id: string, fldName:string, data:any) {
   obj.p_entity_sql = ent;
 
   var url = this.rootURL + '/Generic/GetItemsSQL';
-  var ret = this.http.post<any>(url,obj);
+  var ret = this.http.post<any>(url,obj)
+  
 
   return ret;
 }

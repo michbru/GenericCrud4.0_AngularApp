@@ -150,28 +150,76 @@ doAdd(){
 UpdateItem(ent: string, id: string, fldName:string, dataEdit:any) {
   ent = this.entity;
 
-  this.genericService.updateItem(ent, id, fldName, dataEdit).subscribe((data) => {
-   var test = data;
-//this.currentDataArray = test;
-this.currentItemUpdate = test;
-let curId = this.currentItemUpdate[this.entKeyField];
-   //this.currentRowData = data;
-   var curRowItem = this.data[this.currentItemIndex];
-   if(id=="0"){
-    this.addRow(test);
-    this.toastrService.info('Have a nice day.', "Item Added.", {timeOut: 3000});
-   } else {
-    let obj = this.data.find(obj => obj[this.entKeyField] == curId);
-    let objIndex = this.data.indexOf(obj);
+  this.genericService.updateItem(ent, id, fldName, dataEdit)
 
-   this.setTableItem(objIndex);
-   this.toastrService.success('Have a nice day.', "Item Saved.", {timeOut: 3000});
-   }
-   
-  }),
-    err => {
-      console.log(err);
+
+  .subscribe(
+    data  => {
+    console.log("POST Request is successful ", data);
+
+
+    var test = data;
+    //this.currentDataArray = test;
+    this.currentItemUpdate = test;
+    let curId = this.currentItemUpdate[this.entKeyField];
+       //this.currentRowData = data;
+       var curRowItem = this.data[this.currentItemIndex];
+       if(id=="0"){
+        this.addRow(test);
+        this.toastrService.info('Have a nice day.', "Item Added.", {timeOut: 3000});
+       } else {
+        let obj = this.data.find(obj => obj[this.entKeyField] == curId);
+        let objIndex = this.data.indexOf(obj);
+    
+       this.setTableItem(objIndex);
+       this.toastrService.success('Have a nice day.', "Item Saved.", {timeOut: 3000});
+       }
+
+
+
+
+
+
+   // return data;
+    },
+    error  => {
+    console.log("Error", error);
+    this.toastrService.error('Error Updating Data.', error.error, {timeOut: 3000});
+  //  return error;
     }
+    
+    );
+
+
+
+
+
+
+
+
+   
+//   .subscribe((data) => {
+//    var test = data;
+// //this.currentDataArray = test;
+// this.currentItemUpdate = test;
+// let curId = this.currentItemUpdate[this.entKeyField];
+//    //this.currentRowData = data;
+//    var curRowItem = this.data[this.currentItemIndex];
+//    if(id=="0"){
+//     this.addRow(test);
+//     this.toastrService.info('Have a nice day.', "Item Added.", {timeOut: 3000});
+//    } else {
+//     let obj = this.data.find(obj => obj[this.entKeyField] == curId);
+//     let objIndex = this.data.indexOf(obj);
+
+//    this.setTableItem(objIndex);
+//    this.toastrService.success('Have a nice day.', "Item Saved.", {timeOut: 3000});
+//    }
+   
+//   }),
+//     err => {
+//       console.log(err);
+//     }
 }
 deleteItem(ent: string, id: string, fldName:string, data:any, index:any) {
   ent = this.entity;
